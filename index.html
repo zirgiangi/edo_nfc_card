@@ -8,34 +8,35 @@
     * { box-sizing: border-box; margin: 0; padding: 0; }
 
     :root {
-      --safe-top: max(env(safe-area-inset-top), 12px);
-      --safe-bottom: max(env(safe-area-inset-bottom), 12px);
-      --safe-left: max(env(safe-area-inset-left), 12px);
-      --safe-right: max(env(safe-area-inset-right), 12px);
+      --safe-top: env(safe-area-inset-top, 0px);
+      --safe-bottom: env(safe-area-inset-bottom, 0px);
+      --safe-left: env(safe-area-inset-left, 0px);
+      --safe-right: env(safe-area-inset-right, 0px);
     }
 
     html, body {
       width: 100%;
       min-height: 100%;
-      background: #1b120a;
+      background: #d56c1d;
     }
 
     body {
+      width: 100vw;
+      min-height: 100vh;
       min-height: 100svh;
-      display: grid;
-      place-items: center;
-      font-family: Arial, sans-serif;
+      min-height: 100dvh;
       overflow: hidden;
+      font-family: Arial, sans-serif;
     }
 
-    .poster {
+    .screen {
       position: relative;
-      width: min(100vw, calc(100svh * 9 / 16));
-      height: min(100svh, calc(100vw * 16 / 9));
-      aspect-ratio: 9 / 16;
+      width: 100vw;
+      height: 100vh;
+      height: 100svh;
+      height: 100dvh;
       overflow: hidden;
-      background: #d5671f;
-      isolation: isolate;
+      background: #d56c1d;
     }
 
     .bg {
@@ -44,8 +45,8 @@
       width: 100%;
       height: 100%;
       object-fit: cover;
-      object-position: center;
-      transform: scale(1.01);
+      object-position: center center;
+      transform: scale(1.015);
     }
 
     .top-text,
@@ -61,26 +62,23 @@
     }
 
     .top-text {
-      top: clamp(8.8%, calc(var(--safe-top) + 4.6%), 14.4%);
-      width: clamp(36%, 40vw, 44%);
-      max-width: 340px;
-      min-width: 170px;
+      top: calc(var(--safe-top) + 11.5dvh);
+      width: min(43vw, 330px);
+      min-width: 160px;
     }
 
     .name {
-      top: 39.2%;
-      width: clamp(62%, 69vw, 74%);
-      max-width: 610px;
-      min-width: 260px;
+      top: 39.5dvh;
+      width: min(74vw, 560px);
+      min-width: 255px;
     }
 
     .cta {
       position: absolute;
       left: 50%;
-      bottom: clamp(calc(var(--safe-bottom) + 5.2%), 11.5%, 15.5%);
+      bottom: calc(var(--safe-bottom) + 10.5dvh);
       transform: translateX(-50%);
-      width: clamp(52%, 62vw, 68%);
-      max-width: 420px;
+      width: min(64vw, 380px);
       min-width: 220px;
       display: block;
       border-radius: 999px;
@@ -94,9 +92,7 @@
       position: static;
       width: 100%;
       transform: none;
-      left: auto;
-      top: auto;
-      filter: drop-shadow(0 0 22px rgba(255,255,255,0.42));
+      filter: drop-shadow(0 0 24px rgba(255,255,255,0.44));
     }
 
     .cta:hover,
@@ -124,30 +120,44 @@
 
     @media (max-width: 390px) {
       .top-text {
-        top: clamp(9.6%, calc(var(--safe-top) + 4.8%), 15.2%);
-        width: clamp(40%, 43vw, 48%);
+        top: calc(var(--safe-top) + 10dvh);
+        width: min(48vw, 250px);
+        min-width: 150px;
       }
 
       .name {
-        top: 40.6%;
-        width: clamp(68%, 74vw, 78%);
+        top: 41dvh;
+        width: min(80vw, 420px);
+        min-width: 240px;
       }
 
       .cta {
-        bottom: clamp(calc(var(--safe-bottom) + 5%), 10.2%, 13.4%);
-        width: clamp(58%, 68vw, 74%);
+        bottom: calc(var(--safe-bottom) + 8.5dvh);
+        width: min(71vw, 310px);
+        min-width: 210px;
       }
     }
 
-    @media (min-width: 430px) and (max-width: 600px) {
-      .top-text { width: clamp(31%, 35vw, 37%); }
-      .name { width: clamp(56%, 62vw, 66%); }
-      .cta { width: clamp(46%, 54vw, 58%); }
+    @media (min-width: 430px) {
+      .top-text {
+        top: calc(var(--safe-top) + 12dvh);
+        width: min(35vw, 290px);
+      }
+
+      .name {
+        top: 38.5dvh;
+        width: min(60vw, 500px);
+      }
+
+      .cta {
+        bottom: calc(var(--safe-bottom) + 11.5dvh);
+        width: min(52vw, 340px);
+      }
     }
   </style>
 </head>
 <body>
-  <main class="poster" aria-label="Pagina contatto Edoardo Parigi in formato 9:16 responsive per telefono">
+  <main class="screen" aria-label="Pagina contatto Edoardo Parigi full screen per telefono">
     <img class="bg" src="./assets/sfondo-2.jpg" alt="" aria-hidden="true" />
     <img class="top-text" src="./assets/testo-top-4.svg" alt="Questo è di:" />
     <img class="name" src="./assets/nome.svg" alt="Edoardo Parigi" />
